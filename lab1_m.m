@@ -12,6 +12,7 @@
 % model in the first part.
 % 
 % 
+%--------------------------------------------------------------------------
 %% First Part - Train the Model with Optimal Parameter for Testing
 % 1.1 Data Generation
 
@@ -25,6 +26,8 @@ Y_train = X_train;
 %add the bias term for input layer
 one_col = ones(size(X_train, 1), 1);
 X_train_bias = [one_col, X_train];
+
+%--------------------------------------------------------------------------
 % 1.2 Parameter Defination
 
 %define the size of three layers
@@ -45,6 +48,8 @@ threshold = 0.5;
 t = 0.5;
 Theta1 = rand(num_layer2, num_layer1+1)*t*2 - t;
 Theta2 = rand(num_layer3, num_layer2+1)*t*2 - t;
+
+%--------------------------------------------------------------------------
 % 1.3 Model Training
 
 %create a loop to update the weight(Theta) several times, monitor the error
@@ -52,6 +57,8 @@ Theta2 = rand(num_layer3, num_layer2+1)*t*2 - t;
 
 %create an empty array for visualization of error(MSE-mean square error)
 MSE_all= [];
+
+%--------------------------------------------------------------------------
 % 1.3.1 Feedforward
 
 for i = 1:max_iteration
@@ -69,6 +76,8 @@ for i = 1:max_iteration
     z3 = a2_bias * Theta2';
     %activations for layer3
     a3 = sigmoid(z3);
+
+%--------------------------------------------------------------------------
 % 1.3.2 Backpropagation
 
     %compute the "error term" in layer3 and layer2
@@ -105,6 +114,8 @@ for i = 1:max_iteration
     %update the weight(Theta) between layers
     Theta2 = Theta2 - alpha*D_gradient2;
     Theta1 = Theta1 - alpha*D_gradient1;
+
+%--------------------------------------------------------------------------
 % 1.3.3 Monitor Model Performance
 
     %moniter the error between hypothesis and expected output every 100 iterations
@@ -134,6 +145,8 @@ xlabel('Iterations');
 ylabel('MSE');
 legend;
 grid on;
+
+%--------------------------------------------------------------------------
 % 1.4 Data Testing
 % 1.4.1 Feedforward
 
@@ -159,6 +172,7 @@ a2_bias = [one_col, a2];
 z3 = a2_bias * Theta2';
 a3 = sigmoid(z3);
 
+%--------------------------------------------------------------------------
 % 1.4.2 Output Generation
 
 %convert probability into binary results
@@ -169,6 +183,8 @@ sum_total = size(X_test, 1);
 m = all(X_test == output_labels, 2);
 rowMatches = sum(m)
 accuracy = rowMatches/sum_total
+
+%--------------------------------------------------------------------------
 % 1.4.3 Final weights and activations of the model
 
 %display final learnt weight and activations
@@ -217,6 +233,7 @@ title('Sorted Weight Values of Theta2');
 grid on;
 legend('show')
 hold off
+%--------------------------------------------------------------------------
 %% Second Part - Test the Influence of Input Data and Hyperparameters
 % 2.1 Parameter Testing
 % 2.1.1 Regularization coefficient : 
@@ -320,6 +337,8 @@ sum_total = size(X_test, 1);
 m = all(X_test == output_labels, 2);
 rowMatches = sum(m)
 accuracy = rowMatches/sum_total
+
+%--------------------------------------------------------------------------
 % lambda = 0.01
 
 %regularization coefficient
@@ -420,6 +439,8 @@ sum_total = size(X_test, 1);
 m = all(X_test == output_labels, 2);
 rowMatches = sum(m)
 accuracy = rowMatches/sum_total
+
+%--------------------------------------------------------------------------
 % 2.1.2 Learning rate 
 % alpha = 0.1
 
@@ -524,6 +545,8 @@ sum_total = size(X_test, 1);
 m = all(X_test == output_labels, 2);
 rowMatches = sum(m)
 accuracy = rowMatches/sum_total
+
+%--------------------------------------------------------------------------
 % alpha = 0.9
 
 %learning rate
@@ -624,6 +647,8 @@ sum_total = size(X_test, 1);
 m = all(X_test == output_labels, 2);
 rowMatches = sum(m)
 accuracy = rowMatches/sum_total
+
+%--------------------------------------------------------------------------
 % 2.1.3 Numbers of iteration (batch gradient descent)
 % max_iteration = 1000
 
@@ -728,6 +753,8 @@ sum_total = size(X_test, 1);
 m = all(X_test == output_labels, 2);
 rowMatches = sum(m)
 accuracy = rowMatches/sum_total
+
+%--------------------------------------------------------------------------
 % max_iteration = 5000
 
 %iteration for model to converge
@@ -828,6 +855,8 @@ sum_total = size(X_test, 1);
 m = all(X_test == output_labels, 2);
 rowMatches = sum(m)
 accuracy = rowMatches/sum_total
+
+%--------------------------------------------------------------------------
 % 2.1.4 Weights Initalization
 % Initialize Theta to zero
 
@@ -927,6 +956,8 @@ sum_total = size(X_test, 1);
 m = all(X_test == output_labels, 2);
 rowMatches = sum(m)
 accuracy = rowMatches/sum_total
+
+%--------------------------------------------------------------------------
 % Initialize Theta Between (0,1)
 
 Theta1 = rand(num_layer2, num_layer1+1);
@@ -1022,6 +1053,8 @@ sum_total = size(X_test, 1);
 m = all(X_test == output_labels, 2);
 rowMatches = sum(m)
 accuracy = rowMatches/sum_total
+
+%--------------------------------------------------------------------------
 % 2.2 New Data generation
 % 2.2.1 Less Than 8 Example
 
@@ -1127,6 +1160,8 @@ sum_total = size(X_test, 1);
 m = all(X_test == output_labels, 2);
 rowMatches = sum(m)
 accuracy = rowMatches/sum_total
+
+%--------------------------------------------------------------------------
 % 2.2.2 Add More Binary Data
 
 %generate more 1 from given examples 
